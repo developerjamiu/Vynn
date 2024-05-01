@@ -1,0 +1,10 @@
+{
+  "cSpell.words": [
+    "vynn",
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "editor.formatOnSave": "explicit",
+    "editor.bracketPairColorization.enabled": "explicit"
+  }
+}
