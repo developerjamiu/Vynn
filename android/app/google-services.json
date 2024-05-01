@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738452179622",
+    "project_id": "vynn-development",
+    "storage_bucket": "vynn-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738452179622:android:5e7c938042470b6318c267",
+        "android_client_info": {
+          "package_name": "com.developerjamiu.vynn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR7Zp54PtGJhTxzgOviv2-p_OnobRUPN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

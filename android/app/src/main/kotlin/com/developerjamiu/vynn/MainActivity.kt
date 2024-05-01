@@ -1,4 +1,4 @@
-package com.example.vynn
+package com.developerjamiu.vynn
 
 import io.flutter.embedding.android.FlutterActivity
 
