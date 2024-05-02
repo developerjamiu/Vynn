@@ -24,6 +24,15 @@ class AppImage extends StatelessWidget {
         height: size,
       );
 
+  factory AppImage.logoText({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'logo_text.svg',
+        width: size,
+        height: size,
+      );
+
   factory AppImage.verifyEmailBackground({
     double? size,
   }) =>
