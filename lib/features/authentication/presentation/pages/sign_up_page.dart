@@ -1,6 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vynn/core/theme/app_theme.dart';
+import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
+import 'package:vynn/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
@@ -14,7 +18,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final color = context.colors;
+    final colors = context.colors;
 
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark,
@@ -31,7 +35,7 @@ class SignUpPage extends StatelessWidget {
                   Text(
                     'Hi, create your account',
                     style: textTheme.headlineSmall?.copyWith(
-                      color: color.tangerine,
+                      color: colors.tangerine,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -49,8 +53,30 @@ class SignUpPage extends StatelessWidget {
                     hintText: 'Your secure password',
                     labelText: 'Your password',
                   ),
+                  const SizedBox(height: 24),
+                  Text.rich(
+                    TextSpan(
+                      text: 'Not new to Vynn?',
+                      children: [
+                        TextSpan(
+                          text: ' Login to your account',
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: colors.tangerine,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context.go(
+                                '${AuthOptionsPage.routePath}/${SignInPage.routePath}',
+                              );
+                            },
+                        ),
+                      ],
+                    ),
+                    style: textTheme.bodyMedium,
+                  ),
                   const SizedBox(
-                    height: 84,
+                    height: 100,
                   ),
                 ],
               ),
@@ -60,7 +86,7 @@ class SignUpPage extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     right: 16,
                     left: 16,
-                    bottom: 16,
+                    bottom: 32,
                   ),
                   child: AppButton(
                     onPressed: () {},
