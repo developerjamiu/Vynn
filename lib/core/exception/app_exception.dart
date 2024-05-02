@@ -24,3 +24,10 @@ class UserException extends AppException {
     required super.stackTrace,
   });
 }
+
+class ContentIdeasException extends AppException {
+  const ContentIdeasException(
+    super.message, {
+    required super.stackTrace,
+  });
+}
