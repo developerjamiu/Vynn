@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
     "developerjamiu",
+    "firestore",
     "lerp",
+    "riverpod",
     "vynn",
   ],
   "editor.codeActionsOnSave": {
