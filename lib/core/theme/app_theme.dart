@@ -9,6 +9,7 @@ abstract class AppTheme {
     useMaterial3: true,
     textTheme: _Typography.light(),
     primaryTextTheme: _Typography.light(),
+    scaffoldBackgroundColor: ColorsLight.white,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: ColorsLight.grey.shade100,

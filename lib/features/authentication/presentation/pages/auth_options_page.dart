@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_up_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
+import 'package:vynn/features/shared/widgets/app_image.dart';
 
 class AuthOptionsPage extends StatelessWidget {
   static const routePath = '/auth-options';
@@ -17,8 +18,12 @@ class AuthOptionsPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Spacer(),
+              Expanded(child: AppImage.vynnBanner()),
+              const SizedBox(height: 8),
+              AppImage.businessOwner(),
+              const SizedBox(height: 8),
               AppButton(
                 onPressed: () => context.go(
                   '${AuthOptionsPage.routePath}/${SignUpPage.routePath}',

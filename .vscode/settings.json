@@ -4,7 +4,10 @@
     "firestore",
     "lerp",
     "microtask",
+    "pngs",
     "riverpod",
+    "svgs",
+    "unfocus",
     "vynn",
   ],
   "editor.codeActionsOnSave": {
