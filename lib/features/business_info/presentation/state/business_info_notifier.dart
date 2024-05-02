@@ -2,50 +2,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vynn/core/enums/view_state.dart';
 import 'package:vynn/core/exception/app_exception.dart';
 import 'package:vynn/core/exception/failure.dart';
-import 'package:vynn/features/authentication/presentation/state/sign_in_state.dart';
 import 'package:vynn/features/authentication/repositories/authentication_repository.dart';
 import 'package:vynn/features/authentication/repositories/user_repository.dart';
+import 'package:vynn/features/business_info/presentation/state/business_info_state.dart';
 
-class SignInNotifier extends StateNotifier<SignInState> {
-  SignInNotifier({
+class BusinessInfoInNotifier extends StateNotifier<BusinessInfoState> {
+  BusinessInfoInNotifier({
     required AuthenticationRepository authenticationRepository,
     required UserRepository userRepository,
   })  : _authenticationRepository = authenticationRepository,
         _userRepository = userRepository,
-        super(const SignInState());
+        super(const BusinessInfoState());
 
   final AuthenticationRepository _authenticationRepository;
   final UserRepository _userRepository;
 
-  Future<void> signInUser({
-    required String emailAddress,
-    required String password,
-  }) async {
+  Future<void> updateBusinessInfo(String selectedBusiness) async {
     try {
       state = state.copyWith(
         viewState: ViewState.loading,
         failure: null,
       );
 
-      final user = await _authenticationRepository.signIn(
-        emailAddress: emailAddress,
-        password: password,
+      final user = _authenticationRepository.currentUser;
+
+      await _userRepository.updateBusinessInfo(
+        userId: user!.uid,
+        businessInfo: selectedBusiness,
       );
-
-      final appUser = await _userRepository.getUser(user.uid);
-
-      if (appUser == null) {
-        state = state.copyWith(
-          failure: const Failure('There was an error signing in user'),
-          viewState: ViewState.failure,
-        );
-        await _authenticationRepository.signOut();
-        return;
-      }
-
-      if (appUser.businessInfo == null || appUser.businessInfo!.isEmpty) {
-        state = state.copyWith(businessInfoNeeded: true);
-      }
 
       state = state.copyWith(viewState: ViewState.success);
     } on AppException catch (ex) {
@@ -55,11 +39,13 @@ class SignInNotifier extends StateNotifier<SignInState> {
       );
     }
   }
+
+  void signOut() => _authenticationRepository.signOut();
 }
 
-final signInNotifierProvider =
-    StateNotifierProvider.autoDispose<SignInNotifier, SignInState>(
-  (ref) => SignInNotifier(
+final businessInfoNotifierProvider = StateNotifierProvider.autoDispose<
+    BusinessInfoInNotifier, BusinessInfoState>(
+  (ref) => BusinessInfoInNotifier(
     authenticationRepository: ref.watch(authenticationRepositoryProvider),
     userRepository: ref.watch(userRepositoryProvider),
   ),

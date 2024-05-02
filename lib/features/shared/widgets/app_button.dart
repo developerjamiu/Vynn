@@ -7,6 +7,7 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.loading = false,
+    this.disabled = false,
   }) : isOutlined = false;
 
   const AppButton.outline({
@@ -14,12 +15,14 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.loading = false,
+    this.disabled = false,
   }) : isOutlined = true;
 
   final bool isOutlined;
   final VoidCallback? onPressed;
   final String label;
   final bool loading;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class AppButton extends StatelessWidget {
         : null;
 
     return ElevatedButton(
-      onPressed: loading ? null : onPressed,
+      onPressed: disabled || loading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: backgroundColor,

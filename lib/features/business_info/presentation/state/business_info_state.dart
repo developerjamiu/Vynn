@@ -1,25 +1,21 @@
 import 'package:vynn/core/enums/view_state.dart';
 import 'package:vynn/core/exception/failure.dart';
 
-class SignInState {
-  const SignInState({
-    this.businessInfoNeeded = false,
+class BusinessInfoState {
+  const BusinessInfoState({
     this.viewState = ViewState.idle,
     this.failure,
   });
 
   final ViewState viewState;
-  final bool businessInfoNeeded;
   final Failure? failure;
 
-  SignInState copyWith({
+  BusinessInfoState copyWith({
     ViewState? viewState,
-    bool? businessInfoNeeded,
     Failure? failure,
   }) {
-    return SignInState(
+    return BusinessInfoState(
       viewState: viewState ?? this.viewState,
-      businessInfoNeeded: businessInfoNeeded ?? this.businessInfoNeeded,
       failure: failure,
     );
   }

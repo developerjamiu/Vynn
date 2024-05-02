@@ -10,6 +10,7 @@ import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_up_page.dart';
 import 'package:vynn/features/authentication/presentation/state/sign_in_notifier.dart';
+import 'package:vynn/features/business_info/presentation/pages/business_info_page.dart';
 import 'package:vynn/features/home/presentation/pages/home_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
@@ -50,7 +51,11 @@ class _SignInPageState extends ConsumerState<SignInPage> {
         }
 
         if (next.viewState == ViewState.success) {
-          context.go(HomePage.routePath);
+          if (next.businessInfoNeeded) {
+            context.go(BusinessInfoPage.routePath);
+          } else {
+            context.go(HomePage.routePath);
+          }
         }
       },
     );
