@@ -7,12 +7,20 @@ class AppTextFormField extends StatelessWidget {
     this.prefixIcon,
     required this.hintText,
     required this.labelText,
+    this.controller,
+    this.keyboardType,
+    this.obscureText = false,
+    this.validator,
   }) : borderRadius = const BorderRadius.all(Radius.circular(38));
 
   final BorderRadius borderRadius;
   final IconData? prefixIcon;
   final String hintText;
   final String labelText;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +38,10 @@ class AppTextFormField extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         TextFormField(
+          validator: validator,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          controller: controller,
           decoration: InputDecoration(
             prefixIcon: prefixIcon == null ? null : Icon(prefixIcon),
             hintText: hintText,
