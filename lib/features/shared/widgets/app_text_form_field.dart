@@ -56,15 +56,15 @@ class AppTextFormField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.tangerine),
+              borderSide: BorderSide(color: colors.main100),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.red),
+              borderSide: BorderSide(color: colors.danger110),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.red),
+              borderSide: BorderSide(color: colors.danger110),
             ),
           ),
         ),

@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/core/extensions/snackbar_extension.dart';
 import 'package:vynn/core/extensions/validation_extension.dart';
 import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_in_page.dart';
+import 'package:vynn/features/authentication/presentation/pages/verify_email_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
@@ -55,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Text(
                       'Hi, create your account',
                       style: textTheme.headlineSmall?.copyWith(
-                        color: colors.tangerine,
+                        color: colors.main100,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -87,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           TextSpan(
                             text: ' Login to your account',
                             style: textTheme.bodyMedium?.copyWith(
-                              color: colors.tangerine,
+                              color: colors.main100,
                               fontWeight: FontWeight.bold,
                             ),
                             recognizer: TapGestureRecognizer()
@@ -119,7 +121,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     onPressed: () {
                       FocusScope.of(context).unfocus();
 
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        context.showSuccessSnackbar(
+                          'Verification link sent to your email',
+                        );
+
+                        context.go(
+                          '${AuthOptionsPage.routePath}/${VerifyEmailPage.routePath}',
+                        );
+                      }
                     },
                     label: 'Continue',
                   ),

@@ -11,6 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       surfaceTintColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
       leading: Center(
         child: Padding(
           padding: const EdgeInsets.only(left: 8.0),

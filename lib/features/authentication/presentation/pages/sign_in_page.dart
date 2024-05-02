@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/core/extensions/snackbar_extension.dart';
 import 'package:vynn/core/extensions/validation_extension.dart';
 import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
@@ -55,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
                     Text(
                       'Login to your account',
                       style: textTheme.headlineSmall?.copyWith(
-                        color: colors.tangerine,
+                        color: colors.main100,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -87,7 +88,7 @@ class _SignInPageState extends State<SignInPage> {
                           TextSpan(
                             text: ' Create an account',
                             style: textTheme.bodyMedium?.copyWith(
-                              color: colors.tangerine,
+                              color: colors.main100,
                               fontWeight: FontWeight.bold,
                             ),
                             recognizer: TapGestureRecognizer()
@@ -118,6 +119,10 @@ class _SignInPageState extends State<SignInPage> {
                   child: AppButton(
                     onPressed: () {
                       FocusScope.of(context).unfocus();
+
+                      context.showErrorSnackbar(
+                        'Verify your email before you can continue',
+                      );
 
                       if (_formKey.currentState!.validate()) {}
                     },
