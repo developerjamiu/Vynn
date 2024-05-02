@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/features/initialization/presentation/pages/initialization_page.dart';
 
 final initializationRoutes = [
   GoRoute(
-    path: '/initialization',
-    name: 'Initialization',
-    builder: (context, state) => const Scaffold(), // InitializationPage
+    path: InitializationPage.routePath,
+    name: InitializationPage.routeName,
+    builder: (context, state) => const InitializationPage(),
   ),
 ];

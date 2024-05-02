@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/features/home/presentation/pages/home_page.dart';
 
 final homeRoutes = [
   GoRoute(
-    path: '/',
-    name: 'Home',
-    builder: (context, state) => const Scaffold(), // HomePage
+    path: HomePage.routePath,
+    name: HomePage.routeName,
+    builder: (context, state) => const HomePage(),
   ),
 ];

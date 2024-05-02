@@ -17,3 +17,10 @@ class AuthenticationException extends AppException {
     required super.stackTrace,
   });
 }
+
+class UserException extends AppException {
+  const UserException(
+    super.message, {
+    required super.stackTrace,
+  });
+}

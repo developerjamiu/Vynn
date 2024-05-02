@@ -3,6 +3,7 @@
     "developerjamiu",
     "firestore",
     "lerp",
+    "microtask",
     "riverpod",
     "vynn",
   ],
