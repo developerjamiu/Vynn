@@ -6,7 +6,7 @@ import 'package:vynn/features/shared/widgets/app_image.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
 class VerifyEmailPage extends StatelessWidget {
-  static const routePath = 'verify_email';
+  static const routePath = 'verify-email';
   static const routeName = 'VerifyEmail';
 
   const VerifyEmailPage({super.key});

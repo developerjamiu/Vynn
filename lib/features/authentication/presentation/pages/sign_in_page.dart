@@ -17,7 +17,7 @@ import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
 class SignInPage extends ConsumerStatefulWidget {
-  static const routePath = 'sign_in';
+  static const routePath = 'sign-in';
   static const routeName = 'SignIn';
 
   const SignInPage({super.key});

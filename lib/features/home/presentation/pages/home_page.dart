@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vynn/features/home/models/content_params.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vynn/features/business_profile/presentation/pages/business_profile_page.dart';
 import 'package:vynn/features/home/presentation/state/user_provider.dart';
-import 'package:vynn/features/home/repositories/content_ideas_repository.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 
 class HomePage extends ConsumerWidget {
@@ -31,9 +31,7 @@ class HomePage extends ConsumerWidget {
             ),
             AppButton(
               onPressed: () {
-                ref.read(contentIdeasRepositoryProvider).getContentIdeas(
-                      ContentParams(companyType: 'FinTech'),
-                    );
+                context.go(BusinessProfilePage.routePath);
               },
               label: 'Do',
             ),

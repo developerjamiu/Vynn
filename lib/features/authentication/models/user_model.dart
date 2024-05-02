@@ -55,4 +55,22 @@ class UserModel {
       if (businessInfo != null) 'businessInfo': businessInfo,
     };
   }
+
+  UserModel copyWith({
+    String? email,
+    String? uid,
+    String? firstName,
+    String? lastName,
+    String? profilePhotoUrl,
+    String? businessInfo,
+  }) {
+    return UserModel(
+      email: email ?? this.email,
+      uid: uid ?? this.uid,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      profilePhotoUrl: profilePhotoUrl ?? this.profilePhotoUrl,
+      businessInfo: businessInfo ?? this.businessInfo,
+    );
+  }
 }
