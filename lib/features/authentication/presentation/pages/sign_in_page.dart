@@ -1,27 +1,31 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/core/enums/view_state.dart';
 import 'package:vynn/core/extensions/snackbar_extension.dart';
 import 'package:vynn/core/extensions/validation_extension.dart';
 import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_up_page.dart';
+import 'package:vynn/features/authentication/presentation/state/sign_in_notifier.dart';
+import 'package:vynn/features/home/presentation/pages/home_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
-class SignInPage extends StatefulWidget {
+class SignInPage extends ConsumerStatefulWidget {
   static const routePath = 'sign_in';
   static const routeName = 'SignIn';
 
   const SignInPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  ConsumerState<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInPageState extends ConsumerState<SignInPage> {
   final _formKey = GlobalKey<FormState>();
 
   late final _emailAddressController = TextEditingController();
@@ -36,6 +40,21 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final signInNotifier = ref.watch(signInNotifierProvider);
+
+    ref.listen(
+      signInNotifierProvider,
+      (previous, next) {
+        if (next.failure != null) {
+          context.showErrorSnackbar(next.failure!.message);
+        }
+
+        if (next.viewState == ViewState.success) {
+          context.go(HomePage.routePath);
+        }
+      },
+    );
+
     final textTheme = context.textTheme;
     final colors = context.colors;
 
@@ -117,14 +136,16 @@ class _SignInPageState extends State<SignInPage> {
                     bottom: 32,
                   ),
                   child: AppButton(
+                    loading: signInNotifier.viewState == ViewState.loading,
                     onPressed: () {
                       FocusScope.of(context).unfocus();
 
-                      context.showErrorSnackbar(
-                        'Verify your email before you can continue',
-                      );
-
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        ref.read(signInNotifierProvider.notifier).signInUser(
+                              emailAddress: _emailAddressController.text.trim(),
+                              password: _passwordController.text,
+                            );
+                      }
                     },
                     label: 'Continue',
                   ),

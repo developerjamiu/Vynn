@@ -1,28 +1,31 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vynn/core/enums/view_state.dart';
 import 'package:vynn/core/extensions/snackbar_extension.dart';
 import 'package:vynn/core/extensions/validation_extension.dart';
 import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/verify_email_page.dart';
+import 'package:vynn/features/authentication/presentation/state/sign_up_notifier.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
-class SignUpPage extends StatefulWidget {
+class SignUpPage extends ConsumerStatefulWidget {
   static const routePath = 'sign_up';
   static const routeName = 'SignUp';
 
   const SignUpPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  ConsumerState<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends ConsumerState<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
 
   late final _emailAddressController = TextEditingController();
@@ -37,6 +40,27 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final signUpNotifier = ref.watch(signUpNotifierProvider);
+
+    ref.listen(
+      signUpNotifierProvider,
+      (previous, next) {
+        if (next.failure != null) {
+          context.showErrorSnackbar(next.failure!.message);
+        }
+
+        if (next.viewState == ViewState.success) {
+          context.showSuccessSnackbar(
+            'Verification link sent to your email',
+          );
+
+          context.go(
+            '${AuthOptionsPage.routePath}/${VerifyEmailPage.routePath}',
+          );
+        }
+      },
+    );
+
     final textTheme = context.textTheme;
     final colors = context.colors;
 
@@ -118,17 +142,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     bottom: 32,
                   ),
                   child: AppButton(
+                    loading: signUpNotifier.viewState == ViewState.loading,
                     onPressed: () {
                       FocusScope.of(context).unfocus();
 
                       if (_formKey.currentState!.validate()) {
-                        context.showSuccessSnackbar(
-                          'Verification link sent to your email',
-                        );
-
-                        context.go(
-                          '${AuthOptionsPage.routePath}/${VerifyEmailPage.routePath}',
-                        );
+                        ref.read(signUpNotifierProvider.notifier).signUpUser(
+                              emailAddress: _emailAddressController.text.trim(),
+                              password: _passwordController.text,
+                            );
                       }
                     },
                     label: 'Continue',

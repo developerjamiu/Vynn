@@ -6,17 +6,20 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.label,
+    this.loading = false,
   }) : isOutlined = false;
 
   const AppButton.outline({
     super.key,
     required this.onPressed,
     required this.label,
+    this.loading = false,
   }) : isOutlined = true;
 
   final bool isOutlined;
   final VoidCallback? onPressed;
   final String label;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class AppButton extends StatelessWidget {
         : null;
 
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: loading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: backgroundColor,
@@ -42,12 +45,19 @@ class AppButton extends StatelessWidget {
         disabledBackgroundColor: disabledBackgroundColor,
         shape: shape,
       ),
-      child: Text(
-        label,
-        style: textTheme.labelLarge?.copyWith(
-          color: textColor,
-        ),
-      ),
+      child: loading
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: colors.white,
+              ),
+            )
+          : Text(
+              label,
+              style: textTheme.labelLarge?.copyWith(
+                color: textColor,
+              ),
+            ),
     );
   }
 }
