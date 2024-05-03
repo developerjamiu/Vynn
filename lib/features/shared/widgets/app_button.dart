@@ -6,17 +6,20 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.label,
+    this.icon,
   }) : isOutlined = false;
 
   const AppButton.outline({
     super.key,
     required this.onPressed,
     required this.label,
+    this.icon,
   }) : isOutlined = true;
 
   final bool isOutlined;
   final VoidCallback? onPressed;
   final String label;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,7 @@ class AppButton extends StatelessWidget {
 
     final backgroundColor = isOutlined ? colors.white : colors.primary;
     final textColor = isOutlined ? colors.primary : colors.white;
-    final disabledBackgroundColor =
-        isOutlined ? null : colors.primary.withOpacity(0.3);
+    final disabledBackgroundColor = isOutlined ? null : colors.primary.withOpacity(0.3);
     final shape = isOutlined
         ? RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
@@ -43,12 +45,26 @@ class AppButton extends StatelessWidget {
         disabledBackgroundColor: disabledBackgroundColor,
         shape: shape,
       ),
-      child: Text(
-        label,
-        style: textTheme.labelLarge?.copyWith(
-          color: textColor,
-        ),
-      ),
+      child: icon != null
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                icon!,
+                SizedBox(width: 8),
+                Text(
+                  label,
+                  style: textTheme.labelLarge?.copyWith(
+                    color: textColor,
+                  ),
+                ),
+              ],
+            )
+          : Text(
+              label,
+              style: textTheme.labelLarge?.copyWith(
+                color: textColor,
+              ),
+            ),
     );
   }
 }

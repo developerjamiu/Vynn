@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vynn/core/theme/app_theme.dart';
+import 'package:vynn/features/home/presentation/pages/home_page.dart';
+import 'package:vynn/features/home/presentation/pages/saved_content_page.dart';
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
@@ -63,7 +66,10 @@ class SignUpPage extends StatelessWidget {
                     bottom: 16,
                   ),
                   child: AppButton(
-                    onPressed: () {},
+                    onPressed: () => context.push(
+                      // HomePage.routePath,
+                      SavedContentPage.routePath,
+                    ),
                     label: 'Continue',
                   ),
                 ),
