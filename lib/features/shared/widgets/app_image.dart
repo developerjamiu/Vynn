@@ -24,6 +24,25 @@ class AppImage extends StatelessWidget {
         height: size,
       );
 
+  factory AppImage.logoText({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'logo_text.svg',
+        width: size,
+        height: size,
+      );
+
+  factory AppImage.verifyEmailBackground({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'verify_email_background.png',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
   factory AppImage.vynnBanner({
     double? size,
   }) =>

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vynn/core/theme/app_theme.dart';
@@ -9,16 +7,19 @@ import 'package:vynn/features/home/presentation/pages/saved_content_page.dart';
 import 'package:vynn/features/shared/widgets/app_image.dart';
 import 'package:vynn/features/shared/widgets/app_menu_button.dart';
 import 'package:vynn/features/shared/widgets/circular_button.dart';
-import 'package:vynn/features/shared/widgets/component_page/app_colors.dart';
 import 'package:vynn/features/shared/widgets/drafts_container.dart';
 import 'package:vynn/features/shared/widgets/socials.dart';
 
 import '../../../shared/widgets/app_button.dart';
 import '../../../shared/widgets/app_dropdown_form_field.dart';
 import '../../../shared/widgets/app_text_form_field.dart';
-import '../../../shared/widgets/custom_app_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vynn/features/business_profile/presentation/pages/business_profile_page.dart';
+import 'package:vynn/features/home/presentation/state/user_provider.dart';
+import 'package:vynn/features/shared/widgets/app_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   static const routePath = '/';
   static const routeName = 'Home';
 
@@ -31,7 +32,9 @@ class HomePage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
+
     final textTheme = context.textTheme;
     final color = context.colors;
 
@@ -41,7 +44,8 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: Stack(
+            user.when(
+              data: (data) => Stack(
               children: [
                 ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -53,18 +57,19 @@ class HomePage extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                             text: 'Hi, ',
-                            style:
-                                textTheme.headlineSmall?.copyWith(color: color.black, fontSize: 24),
+                            style: textTheme.headlineSmall
+                                ?.copyWith(color: color.black, fontSize: 24),
                             children: <TextSpan>[
                               TextSpan(
                                 text: 'see what we have \nfor you today!',
-                                style: textTheme.headlineSmall
-                                    ?.copyWith(color: color.grey[600], fontSize: 24),
+                                style: textTheme.headlineSmall?.copyWith(
+                                    color: color.grey[600], fontSize: 24),
                               ),
                             ],
                           ),
                         ),
-                        CircularIconButton(onPressed: () {}, icon: Icons.more_horiz_outlined)
+                        CircularIconButton(
+                            onPressed: () {}, icon: Icons.more_horiz_outlined)
                       ],
                     ),
                     const SizedBox(height: 37),
@@ -73,11 +78,16 @@ class HomePage extends StatelessWidget {
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
-                          SocialsContainer(icon: AppImage.facebook(), title: 'Facebook post'),
+                          SocialsContainer(
+                              icon: AppImage.facebook(),
+                              title: 'Facebook post'),
                           const SizedBox(width: 8),
-                          SocialsContainer(icon: AppImage.x(), title: 'Twitter tweet'),
+                          SocialsContainer(
+                              icon: AppImage.x(), title: 'Twitter tweet'),
                           const SizedBox(width: 8),
-                          SocialsContainer(icon: AppImage.facebook(), title: 'Instagram feed'),
+                          SocialsContainer(
+                              icon: AppImage.facebook(),
+                              title: 'Instagram feed'),
                         ],
                       ),
                     ),
@@ -90,7 +100,8 @@ class HomePage extends StatelessWidget {
                           CardSwiper(
                             cardsCount: cards.length,
                             numberOfCardsDisplayed: 3,
-                            cardBuilder: (context, index, percentThresholdX, percentThresholdY) =>
+                            cardBuilder: (context, index, percentThresholdX,
+                                    percentThresholdY) =>
                                 cards[index],
                           ),
                           Container(
@@ -119,8 +130,8 @@ class HomePage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Text(
                                   'Post this one',
-                                  style: textTheme.headlineSmall
-                                      ?.copyWith(color: color.white, fontSize: 14),
+                                  style: textTheme.headlineSmall?.copyWith(
+                                      color: color.white, fontSize: 14),
                                 )
                               ],
                             ),
@@ -174,14 +185,16 @@ class HomePage extends StatelessWidget {
                                     children: [
                                       AppImage.bottomTitle(),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 8.0),
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
                                         child: Text(
                                           'APP MENU',
                                           textAlign: TextAlign.center,
-                                          style: textTheme.headlineSmall?.copyWith(
-                                              color: color.grey[800],
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12),
+                                          style: textTheme.headlineSmall
+                                              ?.copyWith(
+                                                  color: color.grey[800],
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12),
                                         ),
                                       ),
                                       Container(
@@ -189,7 +202,8 @@ class HomePage extends StatelessWidget {
                                         height: 200,
                                         decoration: BoxDecoration(
                                           color: color.white,
-                                          borderRadius: const BorderRadius.vertical(
+                                          borderRadius:
+                                              const BorderRadius.vertical(
                                             top: Radius.circular(24),
                                           ),
                                         ),
@@ -199,7 +213,8 @@ class HomePage extends StatelessWidget {
                                           children: [
                                             AppMenuButton.outline(
                                               onPressed: () {
-                                                context.push(SavedContentPage.routePath);
+                                                context.push(
+                                                    SavedContentPage.routePath);
                                                 // context.push(
                                                 //   '${HomePage.routePath}/${SavedContentPage.routePath}',
                                                 // );
@@ -211,7 +226,8 @@ class HomePage extends StatelessWidget {
                                                 size: 24,
                                               ),
                                               suffixIcon: Icon(
-                                                Icons.arrow_forward_ios_outlined,
+                                                Icons
+                                                    .arrow_forward_ios_outlined,
                                                 color: color.grey[400],
                                               ),
                                             ),
@@ -224,7 +240,8 @@ class HomePage extends StatelessWidget {
                                                 color: color.grey[800],
                                               ),
                                               suffixIcon: Icon(
-                                                Icons.arrow_forward_ios_outlined,
+                                                Icons
+                                                    .arrow_forward_ios_outlined,
                                                 color: color.grey[400],
                                                 size: 24,
                                               ),
@@ -255,10 +272,11 @@ class HomePage extends StatelessWidget {
                                       child: Text(
                                         'CONNECT OPTIONS',
                                         textAlign: TextAlign.center,
-                                        style: textTheme.headlineSmall?.copyWith(
-                                            color: color.grey[800],
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12),
+                                        style: textTheme.headlineSmall
+                                            ?.copyWith(
+                                                color: color.grey[800],
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12),
                                       ),
                                     ),
                                     Container(
@@ -266,14 +284,16 @@ class HomePage extends StatelessWidget {
                                       height: 800,
                                       decoration: BoxDecoration(
                                         color: color.white,
-                                        borderRadius: const BorderRadius.vertical(
+                                        borderRadius:
+                                            const BorderRadius.vertical(
                                           top: Radius.circular(24),
                                         ),
                                       ),
-                                      padding:
-                                          const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 18, vertical: 24),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const AppTextFormField(
                                             hintText: 'Type your prompt here',
@@ -288,16 +308,20 @@ class HomePage extends StatelessWidget {
                                           Text(
                                             'Length of the content',
                                             textAlign: TextAlign.start,
-                                            style: textTheme.titleSmall?.copyWith(
+                                            style:
+                                                textTheme.titleSmall?.copyWith(
                                               color: color.grey.shade700,
                                             ),
                                           ),
                                           // const SizedBox(height: 8),
                                           SliderTheme(
                                             data: const SliderThemeData(
-                                              trackShape: CustomSliderTrackShape(),
-                                              thumbShape: CustomSliderThumbShape(),
-                                              overlayShape: CustomSliderOverlayShape(),
+                                              trackShape:
+                                                  CustomSliderTrackShape(),
+                                              thumbShape:
+                                                  CustomSliderThumbShape(),
+                                              overlayShape:
+                                                  CustomSliderOverlayShape(),
                                             ),
                                             child: Slider(
                                               activeColor: color.tangerine,
@@ -309,13 +333,15 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(),
                                               Text(
                                                 'Short',
                                                 textAlign: TextAlign.start,
-                                                style: textTheme.titleSmall?.copyWith(
+                                                style: textTheme.titleSmall
+                                                    ?.copyWith(
                                                   color: color.tangerine,
                                                   fontSize: 16,
                                                 ),
@@ -323,7 +349,8 @@ class HomePage extends StatelessWidget {
                                               Text(
                                                 'Medium',
                                                 textAlign: TextAlign.start,
-                                                style: textTheme.titleSmall?.copyWith(
+                                                style: textTheme.titleSmall
+                                                    ?.copyWith(
                                                   color: color.tangerine,
                                                   fontSize: 16,
                                                 ),
@@ -331,7 +358,8 @@ class HomePage extends StatelessWidget {
                                               Text(
                                                 'Long',
                                                 textAlign: TextAlign.start,
-                                                style: textTheme.titleSmall?.copyWith(
+                                                style: textTheme.titleSmall
+                                                    ?.copyWith(
                                                   color: color.tangerine,
                                                   fontSize: 16,
                                                 ),
@@ -369,6 +397,11 @@ class HomePage extends StatelessWidget {
                   ),
                 )
               ],
+            ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (_, __) => const Text('Error loading user data'),
             ),
           ),
         ),
@@ -413,7 +446,8 @@ class CustomSliderThumbShape extends RoundSliderThumbShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
+    super.paint(context,
+        center.translate(-(value - 0.5) / 0.5 * enabledThumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,
@@ -446,7 +480,8 @@ class CustomSliderOverlayShape extends RoundSliderOverlayShape {
     required double textScaleFactor,
     required Size sizeWithOverflow,
   }) {
-    super.paint(context, center.translate(-(value - 0.5) / 0.5 * thumbRadius, 0.0),
+    super.paint(
+        context, center.translate(-(value - 0.5) / 0.5 * thumbRadius, 0.0),
         activationAnimation: activationAnimation,
         enableAnimation: enableAnimation,
         isDiscrete: isDiscrete,

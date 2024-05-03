@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/initialization/presentation/state/initialization_notifier.dart';
+import 'package:vynn/features/shared/widgets/app_image.dart';
 
 class InitializationPage extends ConsumerWidget {
   static const routePath = '/initialization';
@@ -32,9 +33,9 @@ class InitializationPage extends ConsumerWidget {
       },
     );
 
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator.adaptive(),
+        child: AppImage.logoText(),
       ),
     );
   }

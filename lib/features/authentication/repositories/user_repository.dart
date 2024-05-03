@@ -70,6 +70,22 @@ class UserRepository {
       );
     }
   }
+
+  Future<void> updateBusinessInfo({
+    required String userId,
+    required String businessInfo,
+  }) async {
+    try {
+      await userCollection.doc(userId).update(
+        {'businessInfo': businessInfo},
+      );
+    } catch (_, stackTrace) {
+      throw UserException(
+        'There was an exception getting user',
+        stackTrace: stackTrace,
+      );
+    }
+  }
 }
 
 final userRepositoryProvider = Provider(

@@ -7,6 +7,8 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.icon,
+    this.loading = false,
+    this.disabled = false,
   }) : isOutlined = false;
 
   const AppButton.outline({
@@ -14,30 +16,34 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.label,
     this.icon,
+    this.loading = false,
+    this.disabled = false,
   }) : isOutlined = true;
 
   final bool isOutlined;
   final VoidCallback? onPressed;
   final String label;
   final Widget? icon;
+  final bool loading;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
     final colors = context.colors;
 
-    final backgroundColor = isOutlined ? colors.white : colors.primary;
-    final textColor = isOutlined ? colors.primary : colors.white;
-    final disabledBackgroundColor = isOutlined ? null : colors.primary.withOpacity(0.3);
+    final backgroundColor = isOutlined ? colors.white : colors.main300;
+    final textColor = isOutlined ? colors.main300 : colors.white;
+    final disabledBackgroundColor = isOutlined ? null : colors.main320;
     final shape = isOutlined
         ? RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
-            side: BorderSide(color: colors.primary),
+            side: BorderSide(color: colors.main300),
           )
         : null;
 
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: disabled || loading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: backgroundColor,
@@ -58,6 +64,19 @@ class AppButton extends StatelessWidget {
                   ),
                 ),
               ],
+            )
+          : Text(
+              label,
+              style: textTheme.labelLarge?.copyWith(
+                color: textColor,
+              ),
+            ),
+      child: loading
+          ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: colors.white,
+              ),
             )
           : Text(
               label,

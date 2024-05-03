@@ -8,6 +8,7 @@ class UserModel {
     required this.firstName,
     required this.lastName,
     this.profilePhotoUrl,
+    this.businessInfo,
   });
 
   final String email;
@@ -15,6 +16,7 @@ class UserModel {
   final String firstName;
   final String? lastName;
   final String? profilePhotoUrl;
+  final String? businessInfo;
 
   factory UserModel.fromFirebaseUser(User firebaseUser) {
     final userDisplayName = firebaseUser.displayName;
@@ -39,6 +41,7 @@ class UserModel {
       firstName: data['firstName'] ?? '',
       lastName: data['lastName'],
       profilePhotoUrl: data['profilePhotoUrl'],
+      businessInfo: data['businessInfo'],
     );
   }
 
@@ -49,6 +52,25 @@ class UserModel {
       'firstName': firstName,
       if (lastName != null) 'lastName': lastName,
       if (profilePhotoUrl != null) 'profilePhotoUrl': profilePhotoUrl,
+      if (businessInfo != null) 'businessInfo': businessInfo,
     };
+  }
+
+  UserModel copyWith({
+    String? email,
+    String? uid,
+    String? firstName,
+    String? lastName,
+    String? profilePhotoUrl,
+    String? businessInfo,
+  }) {
+    return UserModel(
+      email: email ?? this.email,
+      uid: uid ?? this.uid,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      profilePhotoUrl: profilePhotoUrl ?? this.profilePhotoUrl,
+      businessInfo: businessInfo ?? this.businessInfo,
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/repositories/authentication_repository.dart';
 import 'package:vynn/features/authentication/repositories/user_repository.dart';
+import 'package:vynn/features/business_info/presentation/pages/business_info_page.dart';
 import 'package:vynn/features/home/presentation/pages/home_page.dart';
 import 'package:vynn/features/initialization/presentation/state/initialization_state.dart';
 
@@ -35,7 +36,10 @@ class InitializationNotifier extends StateNotifier<InitializationState> {
         return;
       }
 
-      // Check onboarding as well
+      if (appUser.businessInfo == null || appUser.businessInfo!.isEmpty) {
+        state = state.copyWith(redirectPath: BusinessInfoPage.routePath);
+        return;
+      }
 
       state = state.copyWith(redirectPath: HomePage.routePath);
     } catch (e) {

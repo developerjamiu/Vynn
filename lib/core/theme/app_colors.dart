@@ -1,13 +1,22 @@
 part of 'app_theme.dart';
 
 abstract class AppColors extends ThemeExtension<AppColors> {
+  Color get main100;
+  Color get main110;
+  Color get main200;
+  Color get main300;
+  Color get main310;
+  Color get main320;
+  Color get danger100;
+  Color get danger110;
+  Color get success100;
+  Color get success110;
   Color get black;
   Color get white;
   Color get primary;
   Color get eggShell;
   Color get peach;
   Color get tangerine;
-  Color get main200;
   Color get rust;
   Color get brown;
   Color get red;
@@ -16,34 +25,40 @@ abstract class AppColors extends ThemeExtension<AppColors> {
 
 class _AppColorsLight extends AppColors {
   @override
-  Color get black => ColorsLight.black;
+  Color get main100 => ColorsLight.main100;
 
   @override
-  Color get white => ColorsLight.white;
-
-  @override
-  Color get primary => ColorsLight.primary;
-
-  @override
-  Color get eggShell => ColorsLight.eggShell;
-
-  @override
-  Color get peach => ColorsLight.peach;
-
-  @override
-  Color get tangerine => ColorsLight.tangerine;
+  Color get main110 => ColorsLight.main110;
 
   @override
   Color get main200 => ColorsLight.main200;
 
   @override
-  Color get rust => ColorsLight.rust;
+  Color get main300 => ColorsLight.main300;
 
   @override
-  Color get brown => ColorsLight.brown;
+  Color get main310 => ColorsLight.main310;
 
   @override
-  Color get red => ColorsLight.red;
+  Color get main320 => ColorsLight.main320;
+
+  @override
+  Color get danger100 => ColorsLight.danger100;
+
+  @override
+  Color get danger110 => ColorsLight.danger110;
+
+  @override
+  Color get success100 => ColorsLight.success100;
+
+  @override
+  Color get success110 => ColorsLight.success110;
+
+  @override
+  Color get black => ColorsLight.black;
+
+  @override
+  Color get white => ColorsLight.white;
 
   @override
   MaterialColor get grey => ColorsLight.grey;
@@ -73,8 +88,6 @@ class ColorsLight {
 
   static Color tangerine = const Color(0xFFF35806);
 
-  static Color main200 = const Color(0xFFF3BF08);
-
   static Color rust = const Color(0xFFA33B04);
 
   static Color brown = const Color(0xFF541E02);
@@ -97,5 +110,6 @@ class ColorsLight {
 }
 
 extension AppColorsX on BuildContext {
-  AppColors get colors => Theme.of(this).extension<AppColors>() ?? _AppColorsLight();
+  AppColors get colors =>
+      Theme.of(this).extension<AppColors>() ?? _AppColorsLight();
 }

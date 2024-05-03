@@ -1,16 +1,44 @@
-# vynn
+# Vynn
 
-A new Flutter project.
+A social media content generation and suggestion app for small businesses
 
-## Getting Started
+## Introduction
 
-This project is a starting point for a Flutter application.
+This project is my implementation of the Google AI Hackathon.
 
-A few resources to get you started if this is your first Flutter project:
+### Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Authentication with Firebase Authentication (Email)
+- User and Business Info Management with Firebase Firestore
+- Content Generation with the Gemini API (Google Generative AI package)
+- Ability to save Contents
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Implementation
+
+The project was implemented with custom architecture similar to MVVM where
+- ViewModels are known as notifiers
+- DI is done using the Riverpod Providers
+- It uses the classic repository approach
+
+### Build Limitations
+
+- The project depends on an API Key (for using the Gemini API). While I have not committed my API Key, you can create one [here](https://aistudio.google.com/app/apikey) and create an env.json file at the root of the project and inserting your key in the value as well below.
+```
+{
+    "geminiApiKey": "Your-API-Key"
+}
+```
+- The web and desktop environments were not prioritized for this submission.
+- Automated Tests were not prioritized for this submission.
+- CI / CD was not prioritized for this submission.
+- Flavors was not prioritized for this submission.
+- Analytics and Error Reporting was not prioritized for this submission.
+
+### Testing
+- run `git clone git@github.com:developerjamiu/Vynn.git` in your terminal
+- navigate to the directory containing the cloned project (Vynn)
+- head over to `https://ai.google.dev/` to create a `geminiApiKey`
+- create an `env.json` file in the root directory (check the `env-example.json` as sample)
+- run `flutter run --dart-define-from-file env.json`
+
+Built with ❤️ Powered by Google Gemini.
