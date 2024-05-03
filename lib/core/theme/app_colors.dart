@@ -67,6 +67,7 @@ class _AppColorsLight extends AppColors {
       this;
 }
 
+@visibleForTesting
 class ColorsLight {
   static const Color main100 = Color(0xFFE5631A);
 
@@ -88,9 +89,23 @@ class ColorsLight {
 
   static const Color success110 = Color(0xFF49B423);
 
-  static const Color black = Color(0xFF000000);
+  static Color black = const Color(0xFF000000);
 
-  static const Color white = Color(0xFFFFFFFF);
+  static Color white = const Color(0xFFFFFFFF);
+
+  static Color primary = const Color(0xFF042B53);
+
+  static Color eggShell = const Color(0xFFFFF5EF);
+
+  static Color peach = const Color(0xFFFDC0A0);
+
+  static Color tangerine = const Color(0xFFF35806);
+
+  static Color rust = const Color(0xFFA33B04);
+
+  static Color brown = const Color(0xFF541E02);
+
+  static Color red = const Color(0xFFFF3B30);
 
   static MaterialColor grey = const MaterialColor(
     0xFFADACB5,

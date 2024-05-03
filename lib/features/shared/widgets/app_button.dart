@@ -6,6 +6,7 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.label,
+    this.icon,
     this.loading = false,
     this.disabled = false,
   }) : isOutlined = false;
@@ -14,6 +15,7 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.label,
+    this.icon,
     this.loading = false,
     this.disabled = false,
   }) : isOutlined = true;
@@ -21,6 +23,7 @@ class AppButton extends StatelessWidget {
   final bool isOutlined;
   final VoidCallback? onPressed;
   final String label;
+  final Widget? icon;
   final bool loading;
   final bool disabled;
 
@@ -55,12 +58,26 @@ class AppButton extends StatelessWidget {
                 backgroundColor: colors.white,
               ),
             )
-          : Text(
-              label,
-              style: textTheme.labelLarge?.copyWith(
-                color: textColor,
-              ),
-            ),
+          : icon != null
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    icon!,
+                    SizedBox(width: 8),
+                    Text(
+                      label,
+                      style: textTheme.labelLarge?.copyWith(
+                        color: textColor,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  label,
+                  style: textTheme.labelLarge?.copyWith(
+                    color: textColor,
+                  ),
+                ),
     );
   }
 }

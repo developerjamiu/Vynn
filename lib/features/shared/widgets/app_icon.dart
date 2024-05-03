@@ -24,6 +24,26 @@ class AppIcon extends StatelessWidget {
         height: size,
       );
 
+  factory AppIcon.facebook({
+    double? size,
+  }) =>
+      AppIcon(
+        assetName: 'facebook.svg',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
+  factory AppIcon.x({
+    double? size,
+  }) =>
+      AppIcon(
+        assetName: 'x.svg',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
   @override
   Widget build(BuildContext context) {
     final key = ValueKey('AppIcon-$assetName');

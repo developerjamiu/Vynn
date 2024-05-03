@@ -53,6 +53,36 @@ class AppImage extends StatelessWidget {
         fit: BoxFit.contain,
       );
 
+  factory AppImage.cycle({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'cycle.svg',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
+  factory AppImage.bottomTitle({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'bottom_title.svg',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
+  factory AppImage.swipe({
+    double? size,
+  }) =>
+      AppImage(
+        assetName: 'swipe.svg',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+      );
+
   @override
   Widget build(BuildContext context) {
     final key = ValueKey('AppImage-$assetName');
@@ -67,7 +97,7 @@ class AppImage extends StatelessWidget {
         key: key,
         width: width,
         height: height,
-        fit: fit,
+        // fit: fit,
       );
     }
 

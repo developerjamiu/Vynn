@@ -19,6 +19,7 @@ dependencies:
   google_fonts: ^6.2.1
   google_generative_ai: ^0.3.2
   google_sign_in: ^6.2.1
+  flutter_card_swiper: ^7.0.0
 
 dev_dependencies:
   flutter_test:
