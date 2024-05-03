@@ -14,12 +14,7 @@ abstract class AppColors extends ThemeExtension<AppColors> {
   Color get black;
   Color get white;
   Color get primary;
-  Color get eggShell;
-  Color get peach;
   Color get tangerine;
-  Color get rust;
-  Color get brown;
-  Color get red;
   MaterialColor get grey;
 }
 
@@ -56,6 +51,10 @@ class _AppColorsLight extends AppColors {
 
   @override
   Color get black => ColorsLight.black;
+  @override
+  Color get primary => ColorsLight.primary;
+  @override
+  Color get tangerine => ColorsLight.tangerine;
 
   @override
   Color get white => ColorsLight.white;
@@ -76,6 +75,26 @@ class _AppColorsLight extends AppColors {
 
 @visibleForTesting
 class ColorsLight {
+  static const Color main100 = Color(0xFFE5631A);
+
+  static const Color main110 = Color(0xFFFFF5EF);
+
+  static const Color main200 = Color(0xFFF3BF08);
+
+  static const Color main300 = Color(0xFF042B53);
+
+  static const Color main310 = Color(0xFF193A62);
+
+  static const Color main320 = Color(0xFF688098);
+
+  static const Color danger100 = Color(0xFFFFE0E0);
+
+  static const Color danger110 = Color(0xFFB92C2C);
+
+  static const Color success100 = Color(0xFFE5FFE0);
+
+  static const Color success110 = Color(0xFF49B423);
+
   static Color black = const Color(0xFF000000);
 
   static Color white = const Color(0xFFFFFFFF);

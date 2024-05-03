@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vynn/core/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vynn/core/enums/view_state.dart';
 import 'package:vynn/core/extensions/snackbar_extension.dart';
 import 'package:vynn/core/extensions/validation_extension.dart';
+import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:vynn/features/authentication/presentation/pages/verify_email_page.dart';
@@ -14,6 +14,8 @@ import 'package:vynn/features/authentication/presentation/state/sign_up_notifier
 import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
+
+import '../../../home/presentation/pages/saved_content_page.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   static const routePath = 'sign-up';
@@ -41,6 +43,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final signUpNotifier = ref.watch(signUpNotifierProvider);
+    final textTheme = context.textTheme;
+    final colors = context.colors;
 
     ref.listen(
       signUpNotifierProvider,
@@ -60,9 +64,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         }
       },
     );
-
-    final textTheme = context.textTheme;
-    final color = context.colors;
 
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark,
@@ -142,19 +143,19 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                     bottom: 32,
                   ),
                   child: AppButton(
-                    onPressed: () => context.push(
-                      // HomePage.routePath,
-                      SavedContentPage.routePath,
-                    ),
                     loading: signUpNotifier.viewState == ViewState.loading,
                     onPressed: () {
                       FocusScope.of(context).unfocus();
 
                       if (_formKey.currentState!.validate()) {
-                        ref.read(signUpNotifierProvider.notifier).signUpUser(
-                              emailAddress: _emailAddressController.text.trim(),
-                              password: _passwordController.text,
-                            );
+                        // ref.read(signUpNotifierProvider.notifier).signUpUser(
+                        //       emailAddress: _emailAddressController.text.trim(),
+                        //       password: _passwordController.text,
+                        //     );
+                        context.push(
+                          // HomePage.routePath,
+                          SavedContentPage.routePath,
+                        );
                       }
                     },
                     label: 'Continue',

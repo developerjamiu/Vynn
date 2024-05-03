@@ -51,26 +51,6 @@ class AppButton extends StatelessWidget {
         disabledBackgroundColor: disabledBackgroundColor,
         shape: shape,
       ),
-      child: icon != null
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                icon!,
-                SizedBox(width: 8),
-                Text(
-                  label,
-                  style: textTheme.labelLarge?.copyWith(
-                    color: textColor,
-                  ),
-                ),
-              ],
-            )
-          : Text(
-              label,
-              style: textTheme.labelLarge?.copyWith(
-                color: textColor,
-              ),
-            ),
       child: loading
           ? Padding(
               padding: const EdgeInsets.all(8.0),
@@ -78,12 +58,26 @@ class AppButton extends StatelessWidget {
                 backgroundColor: colors.white,
               ),
             )
-          : Text(
-              label,
-              style: textTheme.labelLarge?.copyWith(
-                color: textColor,
-              ),
-            ),
+          : icon != null
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    icon!,
+                    SizedBox(width: 8),
+                    Text(
+                      label,
+                      style: textTheme.labelLarge?.copyWith(
+                        color: textColor,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  label,
+                  style: textTheme.labelLarge?.copyWith(
+                    color: textColor,
+                  ),
+                ),
     );
   }
 }

@@ -63,11 +63,11 @@ class AppDropdownFormField extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.red),
+              borderSide: BorderSide(color: colors.tangerine),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.red),
+              borderSide: BorderSide(color: colors.tangerine),
             ),
           ),
         ),
