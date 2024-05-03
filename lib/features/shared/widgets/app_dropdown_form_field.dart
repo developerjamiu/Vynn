@@ -30,18 +30,18 @@ class AppDropdownFormField extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         DropdownButtonFormField(
-          items: [
+          items: const [
             DropdownMenuItem(
-              child: Text('Informative'),
               value: 'Informative',
+              child: Text('Informative'),
             ),
             DropdownMenuItem(
-              child: Text('Educative'),
               value: 'Educative',
+              child: Text('Educative'),
             ),
             DropdownMenuItem(
-              child: Text('Interactive'),
               value: 'Interactive',
+              child: Text('Interactive'),
             ),
           ],
           onChanged: (Object? value) {},
@@ -59,15 +59,15 @@ class AppDropdownFormField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.tangerine),
+              borderSide: BorderSide(color: colors.main100),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.tangerine),
+              borderSide: BorderSide(color: colors.main100),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: borderRadius,
-              borderSide: BorderSide(color: colors.tangerine),
+              borderSide: BorderSide(color: colors.main100),
             ),
           ),
         ),

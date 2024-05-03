@@ -13,8 +13,6 @@ abstract class AppColors extends ThemeExtension<AppColors> {
   Color get success110;
   Color get black;
   Color get white;
-  Color get primary;
-  Color get tangerine;
   MaterialColor get grey;
 }
 
@@ -51,10 +49,6 @@ class _AppColorsLight extends AppColors {
 
   @override
   Color get black => ColorsLight.black;
-  @override
-  Color get primary => ColorsLight.primary;
-  @override
-  Color get tangerine => ColorsLight.tangerine;
 
   @override
   Color get white => ColorsLight.white;

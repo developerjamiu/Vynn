@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:vynn/core/theme/app_theme.dart';
-import 'package:vynn/features/home/presentation/pages/home_page.dart';
-import 'package:vynn/features/shared/widgets/app_button.dart';
-import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
 class SavedContentPage extends StatelessWidget {
-  static const routePath = '/saved_content';
+  static const routePath = 'saved-content';
   static const routeName = 'SavedContent';
 
   const SavedContentPage({super.key});
@@ -28,15 +24,17 @@ class SavedContentPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: ListView.separated(
             itemCount: 25,
-            separatorBuilder: (BuildContext context, int index) => const Divider(),
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 height: 300,
                 decoration: BoxDecoration(
-                  color: color.primary,
+                  color: color.main300,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
                 child: Column(
                   children: [
                     Row(
@@ -49,7 +47,7 @@ class SavedContentPage extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Text(
                           'Yesterday',
                           style: textTheme.titleSmall?.copyWith(
@@ -58,7 +56,7 @@ class SavedContentPage extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Icon(Icons.more_horiz_outlined, color: color.white),
                       ],
                     ),
@@ -77,8 +75,8 @@ Here's what VYNN can do for you:
 Craft creative blog posts, social media captions, and email newsletters.
 Personalize content to your target audience and brand voice.
 Beat writer's block and get inspired with new ideas.''',
-                              style: textTheme.headlineSmall
-                                  ?.copyWith(color: color.grey[400], fontSize: 16),
+                              style: textTheme.headlineSmall?.copyWith(
+                                  color: color.grey[400], fontSize: 16),
                             ),
                           ),
                         ),

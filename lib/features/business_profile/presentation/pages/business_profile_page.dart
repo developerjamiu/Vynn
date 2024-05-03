@@ -6,6 +6,7 @@ import 'package:vynn/core/theme/app_theme.dart';
 import 'package:vynn/features/authentication/presentation/pages/auth_options_page.dart';
 import 'package:vynn/features/business_profile/presentation/pages/edit_business_profile_page.dart';
 import 'package:vynn/features/business_profile/presentation/state/business_profile_notifier.dart';
+import 'package:vynn/features/home/presentation/pages/home_page.dart';
 import 'package:vynn/features/home/presentation/state/user_provider.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
@@ -31,8 +32,9 @@ class _BusinessProfilePageState extends ConsumerState<BusinessProfilePage> {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
-        appBar: const CustomAppBar(
+        appBar: CustomAppBar(
           title: 'My Business Profile',
+          onBackPressed: () => context.go(HomePage.routePath),
         ),
         body: user.when(
           data: (user) => ListView(

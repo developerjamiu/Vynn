@@ -73,26 +73,6 @@ class AppImage extends StatelessWidget {
         fit: BoxFit.contain,
       );
 
-  factory AppImage.arrows({
-    double? size,
-  }) =>
-      AppImage(
-        assetName: 'arrows.svg',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-      );
-
-  factory AppImage.facebook({
-    double? size,
-  }) =>
-      AppImage(
-        assetName: 'facebook.svg',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-      );
-
   factory AppImage.swipe({
     double? size,
   }) =>
@@ -103,22 +83,13 @@ class AppImage extends StatelessWidget {
         fit: BoxFit.contain,
       );
 
-  factory AppImage.x({
-    double? size,
-  }) =>
-      AppImage(
-        assetName: 'x.svg',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-      );
-
   @override
   Widget build(BuildContext context) {
     final key = ValueKey('AppImage-$assetName');
 
-    final imagePath =
-        assetName.endsWith('.svg') ? 'assets/svgs/$assetName' : 'assets/pngs/$assetName';
+    final imagePath = assetName.endsWith('.svg')
+        ? 'assets/svgs/$assetName'
+        : 'assets/pngs/$assetName';
 
     if (assetName.endsWith('.svg')) {
       return SvgPicture.asset(

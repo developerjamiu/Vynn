@@ -9,6 +9,10 @@ class UserModel {
     required this.lastName,
     this.profilePhotoUrl,
     this.businessInfo,
+    // TODO: Make the following properties of another sub-model i.e.Content Prefs
+    this.contentFocus,
+    this.contentTone,
+    this.targetAudience,
   });
 
   final String email;
@@ -17,6 +21,9 @@ class UserModel {
   final String? lastName;
   final String? profilePhotoUrl;
   final String? businessInfo;
+  final String? contentFocus;
+  final String? contentTone;
+  final String? targetAudience;
 
   factory UserModel.fromFirebaseUser(User firebaseUser) {
     final userDisplayName = firebaseUser.displayName;
@@ -42,6 +49,9 @@ class UserModel {
       lastName: data['lastName'],
       profilePhotoUrl: data['profilePhotoUrl'],
       businessInfo: data['businessInfo'],
+      contentFocus: data['contentFocus'],
+      contentTone: data['contentTone'],
+      targetAudience: data['targetAudience'],
     );
   }
 
@@ -53,6 +63,9 @@ class UserModel {
       if (lastName != null) 'lastName': lastName,
       if (profilePhotoUrl != null) 'profilePhotoUrl': profilePhotoUrl,
       if (businessInfo != null) 'businessInfo': businessInfo,
+      if (contentFocus != null) 'contentFocus': contentFocus,
+      if (contentTone != null) 'contentTone': contentTone,
+      if (targetAudience != null) 'targetAudience': targetAudience,
     };
   }
 
@@ -63,6 +76,9 @@ class UserModel {
     String? lastName,
     String? profilePhotoUrl,
     String? businessInfo,
+    String? contentFocus,
+    String? contentTone,
+    String? targetAudience,
   }) {
     return UserModel(
       email: email ?? this.email,
@@ -71,6 +87,9 @@ class UserModel {
       lastName: lastName ?? this.lastName,
       profilePhotoUrl: profilePhotoUrl ?? this.profilePhotoUrl,
       businessInfo: businessInfo ?? this.businessInfo,
+      contentFocus: contentFocus ?? this.contentFocus,
+      contentTone: contentTone ?? this.contentTone,
+      targetAudience: targetAudience ?? this.targetAudience,
     );
   }
 }

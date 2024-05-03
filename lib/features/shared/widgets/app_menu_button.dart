@@ -31,7 +31,8 @@ class AppMenuButton extends StatelessWidget {
 
     final backgroundColor = isOutlined ? colors.white : colors.grey[300];
     final textColor = isOutlined ? colors.grey[800] : colors.white;
-    final disabledBackgroundColor = isOutlined ? null : colors.primary.withOpacity(0.3);
+    final disabledBackgroundColor =
+        isOutlined ? null : colors.main300.withOpacity(0.3);
     final shape = isOutlined
         ? RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(60),
@@ -44,7 +45,7 @@ class AppMenuButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           backgroundColor: backgroundColor,
-          minimumSize: const Size.fromHeight(55),
+          minimumSize: const Size.fromHeight(68),
           disabledBackgroundColor: disabledBackgroundColor,
           shape: shape,
         ),
@@ -52,7 +53,7 @@ class AppMenuButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             prefixIcon,
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               label,
               style: textTheme.labelLarge?.copyWith(
@@ -61,7 +62,7 @@ class AppMenuButton extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             suffixIcon,
           ],
         ));
