@@ -7,6 +7,7 @@ abstract class AppColors extends ThemeExtension<AppColors> {
   Color get eggShell;
   Color get peach;
   Color get tangerine;
+  Color get main200;
   Color get rust;
   Color get brown;
   Color get red;
@@ -31,6 +32,9 @@ class _AppColorsLight extends AppColors {
 
   @override
   Color get tangerine => ColorsLight.tangerine;
+
+  @override
+  Color get main200 => ColorsLight.main200;
 
   @override
   Color get rust => ColorsLight.rust;
@@ -69,6 +73,8 @@ class ColorsLight {
 
   static Color tangerine = const Color(0xFFF35806);
 
+  static Color main200 = const Color(0xFFF3BF08);
+
   static Color rust = const Color(0xFFA33B04);
 
   static Color brown = const Color(0xFF541E02);
@@ -91,6 +97,5 @@ class ColorsLight {
 }
 
 extension AppColorsX on BuildContext {
-  AppColors get colors =>
-      Theme.of(this).extension<AppColors>() ?? _AppColorsLight();
+  AppColors get colors => Theme.of(this).extension<AppColors>() ?? _AppColorsLight();
 }

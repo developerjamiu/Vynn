@@ -21,7 +21,9 @@ class SavedContentPage extends StatelessWidget {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark,
       child: Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: const CustomAppBar(
+          title: 'Your Saved Content',
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: ListView.separated(
@@ -34,7 +36,7 @@ class SavedContentPage extends StatelessWidget {
                   color: color.primary,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
                 child: Column(
                   children: [
                     Row(
@@ -42,7 +44,7 @@ class SavedContentPage extends StatelessWidget {
                         Text(
                           'Facebook post',
                           style: textTheme.titleSmall?.copyWith(
-                            color: color.tangerine,
+                            color: color.main200,
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
@@ -56,7 +58,31 @@ class SavedContentPage extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+                        SizedBox(width: 8),
+                        Icon(Icons.more_horiz_outlined, color: color.white),
                       ],
+                    ),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: Scrollbar(
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Text(
+                              '''Is writer's block getting you down?
+
+Struggling to come up with fresh ideas for your social media content?  We've all been there!  Conheça o VYNN (Know VYNN in Portuguese, assuming your target audience is Brazilian) -  a new AI assistant that can help you generate engaging content for all your platforms!
+
+Here's what VYNN can do for you:
+Craft creative blog posts, social media captions, and email newsletters.
+Personalize content to your target audience and brand voice.
+Beat writer's block and get inspired with new ideas.''',
+                              style: textTheme.headlineSmall
+                                  ?.copyWith(color: color.grey[400], fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
