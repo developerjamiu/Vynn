@@ -15,8 +15,6 @@ import 'package:vynn/features/shared/widgets/app_button.dart';
 import 'package:vynn/features/shared/widgets/app_text_form_field.dart';
 import 'package:vynn/features/shared/widgets/custom_app_bar.dart';
 
-import '../../../home/presentation/pages/saved_content_page.dart';
-
 class SignUpPage extends ConsumerStatefulWidget {
   static const routePath = 'sign-up';
   static const routeName = 'SignUp';
@@ -148,14 +146,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       FocusScope.of(context).unfocus();
 
                       if (_formKey.currentState!.validate()) {
-                        // ref.read(signUpNotifierProvider.notifier).signUpUser(
-                        //       emailAddress: _emailAddressController.text.trim(),
-                        //       password: _passwordController.text,
-                        //     );
-                        context.push(
-                          // HomePage.routePath,
-                          SavedContentPage.routePath,
-                        );
+                        ref.read(signUpNotifierProvider.notifier).signUpUser(
+                              emailAddress: _emailAddressController.text.trim(),
+                              password: _passwordController.text,
+                            );
                       }
                     },
                     label: 'Continue',

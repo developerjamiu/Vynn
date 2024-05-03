@@ -96,7 +96,7 @@ final contentIdeasRepositoryProvider = Provider<ContentIdeasRepository>(
   (ref) => ContentIdeasRepository(
     model: GenerativeModel(
       model: 'gemini-pro',
-      apiKey: const String.fromEnvironment('geminiApiKey'),
+      apiKey: "AIzaSyCE5Q4X3pNYHdZDxW4-QMNL-4QTqVQC7fI",
     ),
   ),
 );
